@@ -1,4 +1,4 @@
-package br.com.servico.banco_dados.oracle.banco1;
+package br.com.servico.banco_dados.sqlserver.banco1;
 /*
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;

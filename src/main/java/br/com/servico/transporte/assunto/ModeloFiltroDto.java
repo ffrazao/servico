@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class ModeloFitroDto extends _FiltroDtoImpl {
+public class ModeloFiltroDto extends _FiltroDtoImpl {
 
 	private static final long serialVersionUID = 1L;
 	

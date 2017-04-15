@@ -1,32 +1,34 @@
 package br.com.servico.banco_dados;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public class UtilitarioInfoBasica {
 
-	public static <T extends InfoBasica<? extends T>> List<T> infoBasicaList(final List<T> lista) {
-		return infoBasicaList(lista, InfoBasica.Nivel.PADRAO);
+	public static <T extends InfoBasica<? extends T>> Collection<T> get(final Collection<T> colecao) {
+		return get(colecao, InfoBasica.Nivel.PADRAO);
 	}
 
-	public static <T extends InfoBasica<? extends T>> List<T> infoBasicaList(final List<T> lista, InfoBasica.Nivel nivel) {
-		List<T> result = null;
-		if (lista != null) {
-			for (T registro : lista) {
-				if (result == null) {
-					result = new ArrayList<>();
-				}
-				result.add(registro == null ? null : (T) registro.infoBasica(nivel));
+	@SuppressWarnings("unchecked")
+	public static <T extends InfoBasica<? extends T>> Collection<T> get(final Collection<T> colecao, InfoBasica.Nivel nivel) {
+		Collection<T> result = null;
+		if (colecao != null) {
+			try {
+				result = colecao.getClass().newInstance();
+			} catch (InstantiationException | IllegalAccessException e) {
+				throw new RuntimeException(e);
+			}
+			for (T registro : colecao) {
+				result.add(get(registro, nivel));
 			}
 		}
 		return result;
 	}
 
-	public static <T extends InfoBasica<? extends T>> T infoBasicaReg(final T registro) {
-		return infoBasicaReg(registro, InfoBasica.Nivel.PADRAO);
+	public static <T extends InfoBasica<? extends T>> T get(final T registro) {
+		return get(registro, InfoBasica.Nivel.PADRAO);
 	}
 
-	public static <T extends InfoBasica<? extends T>> T infoBasicaReg(final T registro, InfoBasica.Nivel nivel) {
+	public static <T extends InfoBasica<? extends T>> T get(final T registro, InfoBasica.Nivel nivel) {
 		return registro == null ? null : (T) registro.infoBasica(nivel);
 	}
 

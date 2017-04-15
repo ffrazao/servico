@@ -62,6 +62,11 @@
 			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>commons-chain</groupId>
+			<artifactId>commons-chain</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derby</artifactId>
 			<scope>runtime</scope>
@@ -101,15 +106,16 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-		<!-- <dependency>
-			<groupId>com.oracle.jdbc</groupId>
-			<artifactId>ojdbc7</artifactId>
-			<version>12.1.0.2</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.oracle.jdbc</groupId> <artifactId>ojdbc7</artifactId> 
+			<version>12.1.0.2</version> </dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
 	</dependencies>
 

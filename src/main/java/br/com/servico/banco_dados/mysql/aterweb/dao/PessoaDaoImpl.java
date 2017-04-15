@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.servico.banco_dados.DaoException;
-import br.com.servico.transporte.assunto.ModeloFitroDto;
+import br.com.servico.transporte.assunto.ModeloFiltroDto;
 import br.com.servico.transporte.assunto.ModeloListaDto;
 
 public class PessoaDaoImpl implements PessoaDaoCustom {
@@ -18,7 +18,7 @@ public class PessoaDaoImpl implements PessoaDaoCustom {
 	private EntityManager em;
 
 	@Override
-	public List<ModeloListaDto> filtrar(ModeloFitroDto filtro) throws DaoException {
+	public List<ModeloListaDto> filtrar(ModeloFiltroDto filtro) throws DaoException {
 		List<ModeloListaDto> result = null;
 		List<Object> params = new ArrayList<Object>();
 		StringBuilder sql;

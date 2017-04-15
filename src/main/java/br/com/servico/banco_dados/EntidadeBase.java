@@ -4,15 +4,17 @@ import java.io.Serializable;
 
 import javax.persistence.MappedSuperclass;
 
+import lombok.Data;
+
 // para marcar esta classe como o topo de hierarquia de entidades, porém não
 // persiste informação
 @MappedSuperclass
+@Data
 public abstract class EntidadeBase implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	public EntidadeBase() {
-
 	}
 
 	@SuppressWarnings("unchecked")
