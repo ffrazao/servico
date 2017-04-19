@@ -2,7 +2,6 @@ package br.com.servico.transporte.assunto;
 
 import javax.persistence.Entity;
 
-import br.com.servico.banco_dados.mysql.aterweb.dominio.pessoa.Situacao;
 import br.com.servico.transporte._ListaDtoImpl;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,6 +17,6 @@ public class ModeloListaDto extends _ListaDtoImpl {
 
 	private String nome;
 
-	private Situacao situacao;
+	//private Situacao situacao;
 
 }

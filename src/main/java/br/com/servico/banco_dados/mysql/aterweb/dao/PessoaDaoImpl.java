@@ -1,5 +1,5 @@
 package br.com.servico.banco_dados.mysql.aterweb.dao;
-
+/*
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,3 +43,4 @@ public class PessoaDaoImpl implements PessoaDaoCustom {
 	}
 
 }
+*/

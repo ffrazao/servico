@@ -1,5 +1,5 @@
 package br.com.servico.seguranca.filtro;
-
+/*
 import java.io.IOException;
 
 import javax.servlet.FilterChain;
@@ -29,3 +29,4 @@ public class AutenticacaoFilter extends GenericFilterBean {
 		chain.doFilter(req, res); // always continue
 	}
 }
+*/

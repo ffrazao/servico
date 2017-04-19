@@ -1,5 +1,5 @@
 package br.com.servico.negocio.assunto;
-
+/*
 import org.apache.commons.chain.Context;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -36,3 +36,4 @@ public class SalvarCmd extends _SalvarCmd<Pessoa, Integer> {
 	}
 
 }
+*/

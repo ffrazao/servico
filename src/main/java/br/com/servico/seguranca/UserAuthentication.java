@@ -1,5 +1,5 @@
 package br.com.servico.seguranca;
-
+/*
 import java.util.Collection;
 
 import org.springframework.security.core.Authentication;
@@ -52,3 +52,4 @@ public class UserAuthentication implements Authentication {
 		this.authenticated = authenticated;
 	}
 }
+*/

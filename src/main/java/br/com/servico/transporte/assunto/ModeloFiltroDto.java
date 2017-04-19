@@ -1,6 +1,5 @@
 package br.com.servico.transporte.assunto;
 
-import br.com.servico.banco_dados.mysql.aterweb.dominio.pessoa.Situacao;
 import br.com.servico.transporte._FiltroDtoImpl;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,6 +14,6 @@ public class ModeloFiltroDto extends _FiltroDtoImpl {
 
 	private String nome;
 
-	private Situacao situacao;
+	//private Situacao situacao;
 
 }

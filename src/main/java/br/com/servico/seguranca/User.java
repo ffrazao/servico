@@ -1,5 +1,5 @@
 package br.com.servico.seguranca;
-
+/*
 import java.util.Calendar;
 import java.util.Collection;
 
@@ -147,3 +147,4 @@ public class User implements UserDetails {
 	}
 
 }
+*/

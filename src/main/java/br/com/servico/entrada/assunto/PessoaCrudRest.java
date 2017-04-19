@@ -1,5 +1,5 @@
 package br.com.servico.entrada.assunto;
-
+/*
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,3 +16,4 @@ public class PessoaCrudRest extends _BaseCrudRest<Pessoa, ModeloFiltroDto> {
 	}
 
 }
+*/

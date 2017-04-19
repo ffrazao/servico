@@ -1,5 +1,5 @@
 package br.com.servico.negocio.assunto;
-
+/*
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -19,3 +19,4 @@ public class FiltroNovoCmd extends _FiltroNovoCmd<Pessoa, Integer, ModeloFiltroD
 	}
 
 }
+*/

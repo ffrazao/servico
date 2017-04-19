@@ -1,5 +1,5 @@
 package br.com.servico.seguranca;
-
+/*
 import static br.com.ferramenta.Criptografia.MD5;
 
 import java.security.NoSuchAlgorithmException;
@@ -23,3 +23,4 @@ public class Md5PasswordEncoder implements PasswordEncoder {
 		return encodePassword(rawPassword, salt).equalsIgnoreCase(encPass);
 	}
 }
+*/

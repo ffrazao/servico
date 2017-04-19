@@ -1,5 +1,5 @@
 package br.com.servico.negocio.assunto;
-
+/*
 import org.apache.commons.chain.impl.ChainBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -15,3 +15,4 @@ public class FiltroNovoCh extends ChainBase {
 	}
 
 }
+*/

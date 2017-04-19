@@ -1,5 +1,5 @@
 package br.com.servico.banco_dados.mysql.aterweb.modelo.pessoa;
-
+/*
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -62,3 +62,4 @@ public class Pessoa extends EntidadeBase implements _ChavePrimaria<Integer>, Inf
 	}
 
 }
+*/

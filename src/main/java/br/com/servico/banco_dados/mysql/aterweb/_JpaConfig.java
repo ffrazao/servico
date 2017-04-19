@@ -1,5 +1,5 @@
 package br.com.servico.banco_dados.mysql.aterweb;
-
+/*
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 
@@ -40,4 +40,4 @@ public class _JpaConfig {
 		return builder.dataSource(dataSource()).persistenceUnit(_PERSISTENCE_UNIT_NOME).packages(MODELO).build();
 	}
 
-}
+}*/

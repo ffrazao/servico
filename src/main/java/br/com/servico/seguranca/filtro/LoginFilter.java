@@ -1,30 +1,21 @@
 package br.com.servico.seguranca.filtro;
-
+/*
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import br.com.servico.banco_dados.mysql.aterweb.modelo.pessoa.Pessoa;
 import br.com.servico.seguranca.TokenAuthenticationService;
 import br.com.servico.seguranca.UserAuthentication;
 
@@ -51,19 +42,20 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
 	@Override
 	@Transactional(readOnly = true)
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
-		String dadosUsuario = null;//IOUtils.toString(request.getInputStream());
-		final Pessoa candidato = new ObjectMapper().readValue(dadosUsuario, Pessoa.class);
-		UserDetails user = null; //candidato.userDetails(); 
-		final UsernamePasswordAuthenticationToken loginToken = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
-		Map<String, Object> details = new HashMap<String, Object>();
-		details.put(DATA, Calendar.getInstance());
-		details.put(NUMERO_IP, request.getRemoteAddr());
-		details.put(USER_AGENT, request.getHeader("user-agent"));
-		details.put(ORIGIN, request.getHeader("origin"));
-		details.put(REFERER, request.getHeader("referer"));
-		loginToken.setDetails(details);
-		Authentication result = getAuthenticationManager().authenticate(loginToken);
-		return result;
+//		String dadosUsuario = null;//IOUtils.toString(request.getInputStream());
+//		final Pessoa candidato = new ObjectMapper().readValue(dadosUsuario, Pessoa.class);
+//		UserDetails user = null; //candidato.userDetails(); 
+//		final UsernamePasswordAuthenticationToken loginToken = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
+//		Map<String, Object> details = new HashMap<String, Object>();
+//		details.put(DATA, Calendar.getInstance());
+//		details.put(NUMERO_IP, request.getRemoteAddr());
+//		details.put(USER_AGENT, request.getHeader("user-agent"));
+//		details.put(ORIGIN, request.getHeader("origin"));
+//		details.put(REFERER, request.getHeader("referer"));
+//		loginToken.setDetails(details);
+//		Authentication result = getAuthenticationManager().authenticate(loginToken);
+//		return result;
+		return null;
 	}
 
 	@Override
@@ -81,3 +73,4 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
 		SecurityContextHolder.getContext().setAuthentication(userAuthentication);
 	}
 }
+*/

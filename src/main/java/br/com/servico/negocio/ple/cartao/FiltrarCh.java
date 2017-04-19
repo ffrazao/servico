@@ -1,19 +1,17 @@
-package br.com.servico.negocio.assunto;
-/*
+package br.com.servico.negocio.ple.cartao;
+
 import org.apache.commons.chain.impl.ChainBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-@Service("PessoaEditarCh")
+@Service("PleCartaoEmissaoFiltrarCh")
 @Scope("prototype")
-public class EditarCh extends ChainBase {
+public class FiltrarCh extends ChainBase {
 	
 	@Autowired
-	public EditarCh(RecuperarSalvoCmd c1, SalvarCmd c2) {
+	public FiltrarCh(FiltrarCmd c1) {
 		addCommand(c1);
-		addCommand(c2);
 	}
 
 }
-*/

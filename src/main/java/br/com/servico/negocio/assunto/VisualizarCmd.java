@@ -1,5 +1,5 @@
 package br.com.servico.negocio.assunto;
-
+/*
 import java.util.List;
 
 import org.apache.commons.chain.Context;
@@ -34,3 +34,4 @@ public class VisualizarCmd extends _VisualizarCmd<Pessoa, Integer> {
 	}
 
 }
+*/

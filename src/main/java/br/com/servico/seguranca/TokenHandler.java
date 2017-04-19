@@ -1,5 +1,5 @@
 package br.com.servico.seguranca;
-
+/*
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -108,3 +108,4 @@ public final class TokenHandler {
 		}
 	}
 }
+*/

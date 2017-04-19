@@ -1,5 +1,5 @@
 package br.com.servico.seguranca;
-
+/*
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
@@ -64,3 +64,4 @@ public class TokenAuthenticationService {
 		return null;
 	}
 }
+*/
