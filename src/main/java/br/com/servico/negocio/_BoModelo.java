@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
@@ -111,7 +110,9 @@ public abstract class _BoModelo<T extends EntidadeBase, ID extends Serializable>
 		@Override
 		public boolean execute(Context context) throws Exception {
 			T requisicao = (T) context.get("requisicao");
-			T result = ((Optional<T>) getDao().findOne((ID) requisicao.getId())).get();
+			//T result = ((Optional<T>) getDao().findOne((ID) requisicao.getId())).get();
+			T result = (T) getDao().findOne((ID) requisicao.getId());
+
 			context.put("salvo", result);
 			return false;
 		}
@@ -146,7 +147,8 @@ public abstract class _BoModelo<T extends EntidadeBase, ID extends Serializable>
 			ID[] requisicao = (ID[]) context.get("requisicao");
 			Collection<T> result = new ArrayList<>();
 			for (ID id : requisicao) {
-				T item = ((Optional<T>) getDao().findOne(id)).get();
+				//T item = ((Optional<T>) getDao().findOne(id)).get();
+				T item = (T) getDao().findOne(id);
 				result.add(item instanceof InfoBasica ? (T) get((InfoBasica) item) : item);
 			}
 			context.put("resposta", result);
