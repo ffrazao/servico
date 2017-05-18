@@ -42,8 +42,8 @@ public class FiltrarCmd implements Command {
 				// condição 1 - retorno vazio é válido - indica que o cpf não
 				// possui nenhum cartão da DFTrans
 				if (r.getRetorno().length == 0) {
-					// return true;
-					return false;
+					return true;
+					//return false;
 				} else {
 					boolean encontrou = false;
 					// percorrer os registros do JSON
@@ -55,8 +55,8 @@ public class FiltrarCmd implements Command {
 						// condição 2 - código TDMax igual, tipo Estudante e
 						// Cartão igual a 0
 						if (r.getCodigoTdmax().equals(codigo) && "Estudante".equals(tipo) && "0".equals(cartao)) {
-							//return true;
-							return false;
+							return true;
+//							return false;
 						} else if (r.getCodigoTdmax().equals(codigo)) {
 							encontrou = true;
 						}
