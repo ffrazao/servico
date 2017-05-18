@@ -1,0 +1,5 @@
+se definir a variavel de ambiente SPRING_PROFILES_ACTIVE igual a casa entao o perfil casa sera ativado
+
+set SPRING_PROFILES_ACTIVE=casa 
+
+nas variaveis de ambiente

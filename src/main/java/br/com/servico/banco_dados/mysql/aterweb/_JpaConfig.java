@@ -1,5 +1,5 @@
 package br.com.servico.banco_dados.mysql.aterweb;
-/*
+
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
-@Profile("!test")
+@Profile("casa")
 @Configuration(_JpaConfig._PERSISTENCE_UNIT_NOME + "Configuration")
 @EnableJpaRepositories(basePackages = _JpaConfig.DAO, entityManagerFactoryRef = "entityManager", transactionManagerRef = "transactionManager")
 public class _JpaConfig {
@@ -40,4 +40,4 @@ public class _JpaConfig {
 		return builder.dataSource(dataSource()).persistenceUnit(_PERSISTENCE_UNIT_NOME).packages(MODELO).build();
 	}
 
-}*/
+}

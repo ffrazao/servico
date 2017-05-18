@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
-@Profile("!test")
+@Profile("!casa")
 @Configuration(_JpaConfig._PERSISTENCE_UNIT_NOME + "Configuration")
 @EnableJpaRepositories(basePackages = _JpaConfig.DAO, entityManagerFactoryRef = "entityManager", transactionManagerRef = "transactionManager")
 public class _JpaConfig {
