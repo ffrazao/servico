@@ -31,15 +31,19 @@ public class FiltrarCmd implements Command {
 	@SuppressWarnings({ "unchecked" })
 	@Transactional(readOnly = true)
 	public boolean execute(Context context) throws Exception {
-		// retorno bruto, ou seja, retorno dos dados do banco de dados filtrado somente pelo perído informado
-		List<EmissaoListaDto> result = (List<EmissaoListaDto>) dao.filtrar((EmissaoFiltroDto) context.get("requisicao"));
+		// retorno bruto, ou seja, retorno dos dados do banco de dados filtrado
+		// somente pelo perído informado
+		List<EmissaoListaDto> result = (List<EmissaoListaDto>) dao
+				.filtrar((EmissaoFiltroDto) context.get("requisicao"));
 
 		contador = 0;
 		if (result != null) {
 			result = result.stream().filter((r) -> {
-				// condição 1 - retorno vazio é válido - indica que o cpf não possui nenhum cartão da DFTrans
+				// condição 1 - retorno vazio é válido - indica que o cpf não
+				// possui nenhum cartão da DFTrans
 				if (r.getRetorno().length == 0) {
-					return true;
+					// return true;
+					return false;
 				} else {
 					boolean encontrou = false;
 					// percorrer os registros do JSON
@@ -47,15 +51,18 @@ public class FiltrarCmd implements Command {
 						String cartao = ((Map<String, Object>) retorno).get("Cartao").toString();
 						String codigo = ((Map<String, Object>) retorno).get("Codigo").toString();
 						String tipo = ((Map<String, Object>) retorno).get("Tipo").toString();
-						
-						// condição 2 - código TDMax igual, tipo Estudante e Cartão igual a 0
+
+						// condição 2 - código TDMax igual, tipo Estudante e
+						// Cartão igual a 0
 						if (r.getCodigoTdmax().equals(codigo) && "Estudante".equals(tipo) && "0".equals(cartao)) {
-							return true;
+							//return true;
+							return false;
 						} else if (r.getCodigoTdmax().equals(codigo)) {
 							encontrou = true;
 						}
 					}
-					// condição 3 - nenhum dos itens retornados no JSON possui o código TDMax do registro principal
+					// condição 3 - nenhum dos itens retornados no JSON possui o
+					// código TDMax do registro principal
 					if (!encontrou) {
 						contador++;
 						return true;
