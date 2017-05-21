@@ -1,10 +1,13 @@
 package br.com.servico.entrada.aterweb.pessoa;
 
 import java.util.Collection;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
@@ -18,15 +21,19 @@ import br.com.servico.transporte.aterweb.pessoa.PessoaFiltroDto;
 import br.com.servico.transporte.aterweb.pessoa.PessoaListaDto;
 
 @RestController
-@RequestMapping("/pessoa")
+@RequestMapping(path = "/pessoa", consumes = _BaseRest.FORMATO_DADOS_PADRAO, produces = _BaseRest.FORMATO_DADOS_PADRAO)
 public class PessoaRest extends _BaseRest {
+
+	@Autowired
+	private MessageSource ms;
 
 	public PessoaRest() {
 	}
 
 	@SuppressWarnings("unchecked")
 	@RequestMapping(method = RequestMethod.POST, path = "/teste")
-	public ResponseEntity<Collection<PessoaListaDto>> filtrar(@Valid @RequestBody(required = true) PessoaFiltroDto filtro, Errors errors) throws Exception {
+	private ResponseEntity<Collection<PessoaListaDto>> filtrar(@Valid @RequestBody(required = true) PessoaFiltroDto filtro, Errors errors, Locale locale) throws Exception {
+		System.out.println(ms.getMessage("erro.nao_nulo", new Object[] { "Frz" }, locale));
 		if (errors.hasErrors()) {
 			throw new Exception(errors.getAllErrors().stream().map(x -> x.getDefaultMessage()).collect(Collectors.joining(",")));
 		}

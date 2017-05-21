@@ -10,6 +10,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import br.com.servico.negocio.FacadeBo;
 
 public abstract class _BaseRest {
+	
+	public static final String FORMATO_DADOS_PADRAO = "application/json; charset=UTF-8";
 
 	@Autowired
 	private FacadeBo facadeBo;
