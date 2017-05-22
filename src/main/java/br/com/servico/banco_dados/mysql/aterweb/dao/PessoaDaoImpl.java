@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.servico.banco_dados.DaoException;
+import br.com.servico.banco_dados.mysql.aterweb.dominio.pessoa.Situacao;
 import br.com.servico.transporte.aterweb.pessoa.PessoaFiltroDto;
 import br.com.servico.transporte.aterweb.pessoa.PessoaListaDto;
 
@@ -20,13 +21,13 @@ public class PessoaDaoImpl implements PessoaDaoCustom {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<PessoaListaDto> filtrar(PessoaFiltroDto filtro) throws DaoException {
-		List<PessoaListaDto> result = null;
+		List<PessoaListaDto> result = new ArrayList<>();
 		List<Object> params = new ArrayList<Object>();
 		StringBuilder sql;
 		sql = new StringBuilder();
 		sql.append("select id, nome, situacao from pessoa.pessoa").append("\n");
 
-		Query query = em.createNativeQuery(sql.toString(), PessoaListaDto.class);
+		Query query = em.createNativeQuery(sql.toString());
 
 		// inserir os parametros
 		for (int i = 1; i <= params.size(); i++) {
@@ -37,7 +38,13 @@ public class PessoaDaoImpl implements PessoaDaoCustom {
 		filtro.configuraPaginacao(query);
 
 		// executar a consulta
-		result = query.getResultList();
+		List<Object[]> temp = query.getResultList();
+
+		if (temp != null) {
+			temp.stream().forEach(r -> result.add(new PessoaListaDto((Integer) r[0], (String) r[1], Situacao.valueOf(((Character) r[2]).toString()))));
+		} else {
+			return null;
+		}
 
 		// retornar
 		return result;

@@ -11,7 +11,7 @@ public class PessoaListaDto extends _ListaDtoImpl {
 
 	private static final long serialVersionUID = 1L;
 
-	private String id;
+	private Integer id;
 
 	private String nome;
 
@@ -20,7 +20,7 @@ public class PessoaListaDto extends _ListaDtoImpl {
 	public PessoaListaDto() {
 	}
 
-	public PessoaListaDto(String id, String nome, Situacao situacao) {
+	public PessoaListaDto(Integer id, String nome, Situacao situacao) {
 		super();
 		this.id = id;
 		this.nome = nome;

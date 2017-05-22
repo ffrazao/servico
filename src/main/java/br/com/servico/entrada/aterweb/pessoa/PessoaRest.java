@@ -35,7 +35,7 @@ public class PessoaRest extends _BaseRest {
 	private ResponseEntity<Collection<PessoaListaDto>> filtrar(@Valid @RequestBody(required = true) PessoaFiltroDto filtro, Errors errors, Locale locale) throws Exception {
 		System.out.println(ms.getMessage("erro.nao_nulo", new Object[] { "Frz" }, locale));
 		if (errors.hasErrors()) {
-			throw new Exception(errors.getAllErrors().stream().map(x -> x.getDefaultMessage()).collect(Collectors.joining(",")));
+			//throw new Exception(errors.getAllErrors().stream().map(x -> x.getDefaultMessage()).collect(Collectors.joining(",")));
 		}
 		return new ResponseEntity<Collection<PessoaListaDto>>((Collection<PessoaListaDto>) getFacadeBo().executarSomenteLeitura("AterwebPessoaFiltrarCh", filtro, null), HttpStatus.OK);
 	}
