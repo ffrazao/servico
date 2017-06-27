@@ -2,7 +2,6 @@ package br.com.servico.entrada.aterweb.pessoa;
 
 import java.util.Collection;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -21,7 +20,7 @@ import br.com.servico.transporte.aterweb.pessoa.PessoaFiltroDto;
 import br.com.servico.transporte.aterweb.pessoa.PessoaListaDto;
 
 @RestController
-@RequestMapping(path = "/pessoa", consumes = _BaseRest.FORMATO_DADOS_PADRAO, produces = _BaseRest.FORMATO_DADOS_PADRAO)
+@RequestMapping(path = "/pessoa")//, consumes = _BaseRest.FORMATO_DADOS_PADRAO, produces = _BaseRest.FORMATO_DADOS_PADRAO)
 public class PessoaRest extends _BaseRest {
 
 	@Autowired
@@ -35,9 +34,15 @@ public class PessoaRest extends _BaseRest {
 	private ResponseEntity<Collection<PessoaListaDto>> filtrar(@Valid @RequestBody(required = true) PessoaFiltroDto filtro, Errors errors, Locale locale) throws Exception {
 		System.out.println(ms.getMessage("erro.nao_nulo", new Object[] { "Frz" }, locale));
 		if (errors.hasErrors()) {
-			//throw new Exception(errors.getAllErrors().stream().map(x -> x.getDefaultMessage()).collect(Collectors.joining(",")));
+			// throw new Exception(errors.getAllErrors().stream().map(x ->
+			// x.getDefaultMessage()).collect(Collectors.joining(",")));
 		}
 		return new ResponseEntity<Collection<PessoaListaDto>>((Collection<PessoaListaDto>) getFacadeBo().executarSomenteLeitura("AterwebPessoaFiltrarCh", filtro, null), HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, path = "/teste")
+	private ResponseEntity<String> teste() {
+		return new ResponseEntity<>("Testado", HttpStatus.OK);
 	}
 
 }
