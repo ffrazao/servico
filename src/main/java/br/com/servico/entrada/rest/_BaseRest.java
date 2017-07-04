@@ -1,4 +1,4 @@
-package br.com.servico.entrada;
+package br.com.servico.entrada.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

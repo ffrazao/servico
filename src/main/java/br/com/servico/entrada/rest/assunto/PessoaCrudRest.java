@@ -1,4 +1,4 @@
-package br.com.servico.entrada.assunto;
+package br.com.servico.entrada.rest.assunto;
 /*
 import java.io.IOException;
 

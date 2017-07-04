@@ -1,4 +1,4 @@
-package br.com.servico.entrada.ple.cartao;
+package br.com.servico.entrada.rest.ple.cartao;
 
 import java.security.Principal;
 import java.util.Collection;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.servico.entrada._BaseRest;
+import br.com.servico.entrada.rest._BaseRest;
 import br.com.servico.transporte.ple.cartao.EmissaoFiltroDto;
 import br.com.servico.transporte.ple.cartao.EmissaoListaDto;
 

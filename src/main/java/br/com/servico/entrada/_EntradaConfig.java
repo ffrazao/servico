@@ -10,7 +10,7 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 @Configuration
 @EnableWebMvc
-public class _RestConfig extends WebMvcConfigurerAdapter {
+public class _EntradaConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public ReloadableResourceBundleMessageSource messageSource() {

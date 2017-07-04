@@ -1,4 +1,4 @@
-package br.com.servico.entrada.aterweb.pessoa;
+package br.com.servico.entrada.rest.aterweb.pessoa;
 
 import java.util.Collection;
 import java.util.Locale;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.servico.entrada._BaseRest;
+import br.com.servico.entrada.rest._BaseRest;
 import br.com.servico.transporte.aterweb.pessoa.PessoaFiltroDto;
 import br.com.servico.transporte.aterweb.pessoa.PessoaListaDto;
 

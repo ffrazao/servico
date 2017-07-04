@@ -1,4 +1,4 @@
-package br.com.servico.entrada;
+package br.com.servico.entrada.rest;
 
 import java.security.Principal;
 import java.util.Collection;
