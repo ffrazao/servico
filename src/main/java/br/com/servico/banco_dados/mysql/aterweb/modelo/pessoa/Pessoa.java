@@ -34,6 +34,9 @@ public class Pessoa extends EntidadeBase implements _ChavePrimaria<Integer>, Inf
 	@Column(updatable = false)
 	private Situacao situacao;
 
+	public Pessoa() {
+	}
+	
 	public Pessoa(Integer id) {
 		super(id);
 	}
