@@ -5,6 +5,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-teste
+	<form action="/login" method="post">
+		<label>Usuário</label> <input type="text" name="usuario" value="john" > <label>Senha</label>
+		<input type="password" name="senha" value="123"> <input type="submit">
+	</form>
 </body>
 </html>
