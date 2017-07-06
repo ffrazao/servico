@@ -20,9 +20,6 @@ public class _SegurancaConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private CustomAuthenticationProvider authProvider;
 	
-	@Autowired 
-	private DaoAuthenticationProvider daoAuthenticationProvider;
-	
 	@Bean
 	public DaoAuthenticationProvider createDaoAuthenticationProvider() {
 		return new DaoAuthenticationProvider();
@@ -36,8 +33,8 @@ public class _SegurancaConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		//auth.authenticationProvider(authProvider);
-		auth.authenticationProvider(daoAuthenticationProvider);
+		// caso necessário pode ser incluso outros autenticadores
+		auth.authenticationProvider(authProvider);
 	}
 
 	@Override
