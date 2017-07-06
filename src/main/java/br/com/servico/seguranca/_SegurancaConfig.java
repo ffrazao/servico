@@ -6,9 +6,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 
 @Configuration
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
@@ -41,6 +45,8 @@ public class _SegurancaConfig extends WebSecurityConfigurerAdapter {
 			.anyRequest()
 				.authenticated()
 		.and()
+			.httpBasic()
+		.and()
 			.formLogin()
 				.loginPage("/login")
 				.usernameParameter("usuario")
@@ -56,7 +62,17 @@ public class _SegurancaConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void globalUserDetails(final AuthenticationManagerBuilder auth) throws Exception {
-		auth
+		auth. authenticationProvider(new AuthenticationProvider() {
+
+			@Override
+			public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+				return authentication;
+			}
+
+			@Override
+			public boolean supports(Class<?> authentication) {
+				return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
+			}})
 			.inMemoryAuthentication()
 				.withUser("john").password("123").roles("USER")
 			.and()
