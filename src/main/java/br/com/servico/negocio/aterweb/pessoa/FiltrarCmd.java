@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.servico.banco_dados.mysql.aterweb.dao.PessoaDao;
+import br.com.servico.banco_dados.mysql.aterweb.dao.pessoa.PessoaDao;
 import br.com.servico.transporte.aterweb.pessoa.PessoaFiltroDto;
 import br.com.servico.transporte.aterweb.pessoa.PessoaListaDto;
 

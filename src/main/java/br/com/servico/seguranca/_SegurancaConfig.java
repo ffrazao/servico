@@ -3,40 +3,36 @@ package br.com.servico.seguranca;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 @EnableWebSecurity
+@ComponentScan("br.com.servico.seguranca")
+@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class _SegurancaConfig extends WebSecurityConfigurerAdapter {
-	
+
 	@Autowired
-	private CustomAuthenticationProvider authProvider;
-	
-	@Bean
-	public DaoAuthenticationProvider createDaoAuthenticationProvider() {
-		return new DaoAuthenticationProvider();
-	}
+	private AuthenticationProvider customAuthenticationProvider;
 
 	@Override
 	@Bean
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
-
+	
 	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		// caso necessário pode ser incluso outros autenticadores
-		auth.authenticationProvider(authProvider);
-	}
-
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(customAuthenticationProvider);
+    }
+	
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
 		/*http
@@ -58,6 +54,9 @@ public class _SegurancaConfig extends WebSecurityConfigurerAdapter {
 			.anyRequest()
 				.authenticated()
 		.and()
+			.exceptionHandling()
+			.accessDeniedPage("/negado")
+		.and()
 			.httpBasic()
 		.and()
 			.formLogin()
@@ -66,7 +65,8 @@ public class _SegurancaConfig extends WebSecurityConfigurerAdapter {
 				.passwordParameter("senha")
 				.permitAll()
 		.and()
-            .logout()                                    
+            .logout()                            
+            	.invalidateHttpSession(true)
                 .permitAll()
 		.and()
 			.csrf()
@@ -86,13 +86,4 @@ public class _SegurancaConfig extends WebSecurityConfigurerAdapter {
 				.withUser("admin").password("nimda").roles("ADMIN");
 	}
 
-//	@Autowired
-//	public void configureGlobal(AuthenticationManagerBuilder auth, LdapContextSource contextSource) throws Exception {
-//		auth.ldapAuthentication().userSearchBase("OU=Users OU").userSearchFilter("sAMAccountName={0}").groupSearchBase("OU=Groups OU").groupSearchFilter("member={0}").contextSource(contextSource);
-//
-//		if (includeTestUsers) {
-//			auth.inMemoryAuthentication().withUser("user").password("u").authorities(userRole);
-//		}
-//	}	
-	
 }

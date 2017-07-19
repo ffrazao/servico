@@ -1,4 +1,4 @@
-package br.com.servico.banco_dados.mysql.aterweb.dao;
+package br.com.servico.banco_dados.mysql.aterweb.dao.pessoa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -15,7 +15,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 @Profile("casa")
 @Configuration(_JpaConfig._PERSISTENCE_UNIT_NOME + "Configuration")
-@EnableJpaRepositories(basePackages = _JpaConfig.DAO, entityManagerFactoryRef = "entityManager", transactionManagerRef = "transactionManager")
+@EnableJpaRepositories(basePackages = _JpaConfig.DAO, entityManagerFactoryRef = "entityManagerFactory", transactionManagerRef = "transactionManager")
 public class _JpaConfig {
 
 	public static final String _PERSISTENCE_UNIT_NOME = "aterweb";
@@ -34,7 +34,7 @@ public class _JpaConfig {
 	}
 
 	@Primary
-	@Bean(name = "entityManager")
+	@Bean(name = "entityManagerFactory")
 	@PersistenceContext(unitName = _PERSISTENCE_UNIT_NOME)
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
 		return builder.dataSource(dataSource()).persistenceUnit(_PERSISTENCE_UNIT_NOME).packages(MODELO).build();

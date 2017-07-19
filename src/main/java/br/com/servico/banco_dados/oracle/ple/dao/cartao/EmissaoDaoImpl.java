@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import br.com.servico.transporte.ple.cartao.EmissaoListaDto;
 public class EmissaoDaoImpl implements EmissaoDaoCustom {
 
 	@Autowired
-	private EntityManager em;
+	private EntityManagerFactory emf;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -33,6 +34,8 @@ public class EmissaoDaoImpl implements EmissaoDaoCustom {
 		sql.append("ON     b.id = a.PESSOAFISICAPROTOCOLO_ID").append("\n");
 		sql.append("WHERE  a.DTTRANSFERENCIA >= :inicio").append("\n");
 		sql.append("AND    a.DTTRANSFERENCIA <  :termino").append("\n");
+
+		EntityManager em = emf.createEntityManager();
 
 		Query query = em.createNativeQuery(sql.toString());
 

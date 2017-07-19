@@ -1,9 +1,10 @@
-package br.com.servico.banco_dados.mysql.aterweb.dao;
+package br.com.servico.banco_dados.mysql.aterweb.dao.pessoa;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import br.com.servico.transporte.aterweb.pessoa.PessoaListaDto;
 public class PessoaDaoImpl implements PessoaDaoCustom {
 
 	@Autowired
-	private EntityManager em;
+	private EntityManagerFactory emf;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -26,6 +27,8 @@ public class PessoaDaoImpl implements PessoaDaoCustom {
 		StringBuilder sql;
 		sql = new StringBuilder();
 		sql.append("select id, nome, situacao from pessoa.pessoa").append("\n");
+		
+		EntityManager em = emf.createEntityManager();
 
 		Query query = em.createNativeQuery(sql.toString());
 

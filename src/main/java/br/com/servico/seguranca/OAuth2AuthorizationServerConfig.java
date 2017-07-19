@@ -134,7 +134,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 		return populator;
 	}
 
-	@Bean
+	@Bean(name="oauthDatasource")
 	public DataSource dataSource() {
 		final DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));

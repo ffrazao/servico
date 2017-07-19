@@ -1,5 +1,5 @@
 package br.com.servico.banco_dados.postgres.banco1;
-/*
+
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 
@@ -12,16 +12,18 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
-@Profile("!test")
+@Profile("!casa")
 @Configuration(_JpaConfig._PERSISTENCE_UNIT_NOME + "Configuration")
-@EnableJpaRepositories(basePackages = _JpaConfig.DAO, entityManagerFactoryRef = _JpaConfig._PERSISTENCE_UNIT_NOME + "EntityManager", transactionManagerRef = "transactionManager")
+@EnableJpaRepositories(basePackages = _JpaConfig.DAO, entityManagerFactoryRef = _JpaConfig._PERSISTENCE_UNIT_NOME + "EntityManagerFactory", transactionManagerRef = "transactionManager")
 public class _JpaConfig {
-
+	
 	public static final String _PERSISTENCE_UNIT_NOME = "scie";
 
-	public static final String DAO = "com.example.jpa." + _PERSISTENCE_UNIT_NOME + ".dao";
+	public static final String _PLATAFORMA = "postgres";
 
-	public static final String MODELO = "com.example.jpa." + _PERSISTENCE_UNIT_NOME + ".modelo";
+	public static final String DAO = "br.com.servico.banco_dados." + _PLATAFORMA + "." + _PERSISTENCE_UNIT_NOME + ".dao";
+
+	public static final String MODELO = "br.com.servico.banco_dados." + _PLATAFORMA + "." + _PERSISTENCE_UNIT_NOME + ".modelo";
 
 	@Bean(name = _PERSISTENCE_UNIT_NOME + "DataSource")
 	@ConfigurationProperties(prefix = "spring." + _PERSISTENCE_UNIT_NOME + "Datasource")
@@ -29,10 +31,10 @@ public class _JpaConfig {
 		return DataSourceBuilder.create().build();
 	}
 
-	@Bean(name = _PERSISTENCE_UNIT_NOME + "EntityManager")
+	@Bean(name = _PERSISTENCE_UNIT_NOME + "EntityManagerFactory")
 	@PersistenceContext(unitName = _PERSISTENCE_UNIT_NOME)
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
 		return builder.dataSource(dataSource()).persistenceUnit(_PERSISTENCE_UNIT_NOME).packages(MODELO).build();
 	}
 
-}*/
+}
