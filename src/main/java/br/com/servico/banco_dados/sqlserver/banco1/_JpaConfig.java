@@ -18,7 +18,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 @EnableJpaRepositories(basePackages = _JpaConfig.DAO, entityManagerFactoryRef = _JpaConfig._PERSISTENCE_UNIT_NOME + "EntityManagerFactory", transactionManagerRef = "transactionManager")
 public class _JpaConfig {
 
-	public static final String _PERSISTENCE_UNIT_NOME = "scie";
+	public static final String _PERSISTENCE_UNIT_NOME = "scie2";
 
 	public static final String _PLATAFORMA = "sqlserver";
 
