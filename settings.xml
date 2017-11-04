@@ -6,7 +6,7 @@
 		<server>
 			<id>maven.oracle.com</id>
 			<username>ffrazao@gmail.com</username>
-			<password>{Jd6vi0AuqcAHPvRb7Vzer6hXFkHffVR0QjNj11/SG5E=}</password>
+			<password>{1AU82elrn98HBCWKhFxlHAmMcBR3tpdJomMahhNANiU=}</password>
 			<configuration>
 				<basicAuthScope>
 					<host>ANY</host>
@@ -26,4 +26,31 @@
 			</configuration>
 		</server>
 	</servers>
+	<profiles>
+		<profile>
+			<id>main</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<repositories>
+				<repository>
+					<id>maven.oracle.com</id>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+					<url>https://maven.oracle.com</url>
+					<layout>default</layout>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>maven.oracle.com</id>
+					<url>https://maven.oracle.com</url>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+	</profiles>
 </settings>

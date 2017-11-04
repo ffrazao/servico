@@ -133,7 +133,7 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-		<dependency>
+<!-- 		<dependency>
 			<groupId>com.oracle.jdbc</groupId>
 			<artifactId>ojdbc7</artifactId>
 			<version>12.1.0.2</version>
@@ -142,7 +142,7 @@
 			<groupId>cn.easyproject</groupId>
 			<artifactId>orai18n</artifactId>
 			<version>12.1.0.2.0</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>com.github.ulisesbocchio</groupId>
