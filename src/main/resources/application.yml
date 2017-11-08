@@ -1,0 +1,59 @@
+security:
+  basic:
+    enabled: false
+    
+server:
+  port: 2280
+
+#jpa/hibernate config
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
+#Basic Spring Boot Config for Databases
+  padraoDatasource:
+    driverClassName: org.h2.Driver
+    password: 
+    url: jdbc:h2:file:C:\\temp\\test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE
+    username: SA
+  aterwebDatasource:
+    driverClassName: com.mysql.jdbc.Driver
+    password: emater
+    pool-size: 30
+    testWhileIdle: true
+    type: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+    url: jdbc:mysql://localhost/?autoReconnect=true&verifyServerCertificate=false&useSSL=false&requireSSL=false
+    username: emater
+    validationQuery: SELECT 1
+  pleDatasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    password: dftrans
+    pool-size: 30
+    type: oracle.jdbc.pool.OracleDataSource
+    url: jdbc:oracle:thin:@//10.72.31.161:1521/GDFPROD
+    username: db_ple
+  scie2Datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    password: dftrans2scie
+    type: oracle.jdbc.pool.OracleDataSource
+    url: jdbc:oracle:thin:@//10.72.31.161:1521/GDFPROD
+    username: db_scie
+  scieDatasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    password: dftrans2scie
+    type: oracle.jdbc.pool.OracleDataSource
+    url: jdbc:oracle:thin:@//10.72.31.161:1521/GDFPROD
+    username: db_scie
+
+#variáveis personalizadas
+init-db: true
+
+logging:
+  level: 
+    org.springframework.security: DEBUG

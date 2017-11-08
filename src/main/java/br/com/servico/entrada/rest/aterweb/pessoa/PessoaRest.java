@@ -40,7 +40,7 @@ public class PessoaRest extends _BaseRest {
 		return new ResponseEntity<Collection<PessoaListaDto>>((Collection<PessoaListaDto>) getFacadeBo().executarSomenteLeitura("AterwebPessoaFiltrarCh", filtro, null), HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, path = "/teste")
+	@RequestMapping(method = RequestMethod.GET, path = "/teste", produces="text/plain")
 	private ResponseEntity<String> teste() {
 		return new ResponseEntity<>("Testado", HttpStatus.OK);
 	}
