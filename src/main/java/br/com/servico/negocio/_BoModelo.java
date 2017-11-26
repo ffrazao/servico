@@ -7,17 +7,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.commons.chain.Command;
-import org.apache.commons.chain.Context;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import br.com.frazao.cadeiaresponsabilidade.Comando;
+import br.com.frazao.cadeiaresponsabilidade.Contexto;
 import br.com.servico.banco_dados.EntidadeBase;
 import br.com.servico.banco_dados.InfoBasica;
 import br.com.servico.banco_dados._ChavePrimaria;
 import br.com.servico.transporte._FiltroDto;
 
 @SuppressWarnings("unchecked")
-public abstract class _BoModelo<T extends EntidadeBase, ID extends Serializable> implements Command {
+public abstract class _BoModelo<T extends EntidadeBase, ID extends Serializable> extends Comando {
 
 	public abstract static class _ExcluirCmd<T extends EntidadeBase, ID extends Serializable> extends _BoModelo<T, ID> {
 
@@ -25,14 +25,14 @@ public abstract class _BoModelo<T extends EntidadeBase, ID extends Serializable>
 			super(dao);
 		}
 
-		public boolean execute(Context context) throws Exception {
-			ID[] requisicao = (ID[]) context.get("requisicao");
+		@SuppressWarnings("rawtypes")
+		public void procedimento(Contexto contexto) throws Exception {
+			ID[] requisicao = (ID[]) contexto.getRequisicao();
 			if (requisicao != null) {
 				for (ID id : requisicao) {
 					getDao().delete(id);
 				}
 			}
-			return false;
 		}
 	}
 
@@ -44,22 +44,22 @@ public abstract class _BoModelo<T extends EntidadeBase, ID extends Serializable>
 
 		@Override
 		@SuppressWarnings("rawtypes")
-		public boolean execute(Context context) throws Exception {
+		public void procedimento(Contexto contexto) throws Exception {
 			Collection<T> result = getDao().findAll();
 			if (result != null && result.size() > 0 && ((List<T>) result).get(0) instanceof InfoBasica) {
 				List<InfoBasica> ibList = new ArrayList<>();
 				for (T r : result) {
 					ibList.add((InfoBasica) r);
 				}
-				context.put("resposta", ibList);
+				contexto.setResposta(ibList);
 			} else {
-				context.put("resposta", result);
+				contexto.setResposta(result);
 			}
-			return false;
 		}
 	}
 
-	public static class _FiltroNovoCmd<T extends EntidadeBase, ID extends Serializable, F extends _FiltroDto> extends _BoModelo<T, ID> {
+	public static class _FiltroNovoCmd<T extends EntidadeBase, ID extends Serializable, F extends _FiltroDto>
+			extends _BoModelo<T, ID> {
 
 		private Class<F> filtroClass;
 
@@ -68,14 +68,14 @@ public abstract class _BoModelo<T extends EntidadeBase, ID extends Serializable>
 			this.filtroClass = filtroClass;
 		}
 
+		@SuppressWarnings("rawtypes")
 		@Override
-		public boolean execute(Context context) throws Exception {
-			F filtro = (F) context.get("requisicao");
+		public void procedimento(Contexto contexto) throws Exception {
+			F filtro = (F) contexto.getRequisicao();
 			if (filtro == null) {
 				filtro = filtroClass.newInstance();
 			}
-			context.put("resposta", filtro);
-			return false;
+			contexto.setResposta(filtro);
 		}
 
 	}
@@ -89,48 +89,50 @@ public abstract class _BoModelo<T extends EntidadeBase, ID extends Serializable>
 			this.entidadeClass = entidadeClass;
 		}
 
+		@SuppressWarnings("rawtypes")
 		@Override
-		public boolean execute(Context context) throws Exception {
-			T result = (T) context.get("requisicao");
+		public void procedimento(Contexto contexto) throws Exception {
+			T result = (T) contexto.getRequisicao();
 			if (result == null) {
 				result = entidadeClass.newInstance();
 			}
-			context.put("resposta", result);
-			return false;
+			contexto.setResposta(result);
 		}
 
 	}
 
-	public static class _RecuperarSalvoCmd<T extends EntidadeBase & _ChavePrimaria<ID>, ID extends Serializable> extends _BoModelo<T, ID> {
+	public static class _RecuperarSalvoCmd<T extends EntidadeBase & _ChavePrimaria<ID>, ID extends Serializable>
+			extends _BoModelo<T, ID> {
 
 		public _RecuperarSalvoCmd(JpaRepository<T, ID> dao) {
 			super(dao);
 		}
 
+		@SuppressWarnings("rawtypes")
 		@Override
-		public boolean execute(Context context) throws Exception {
-			T requisicao = (T) context.get("requisicao");
-			//T result = ((Optional<T>) getDao().findOne((ID) requisicao.getId())).get();
+		public void procedimento(Contexto contexto) throws Exception {
+			T requisicao = (T) contexto.getRequisicao();
+			// T result = ((Optional<T>) getDao().findOne((ID)
+			// requisicao.getId())).get();
 			T result = (T) getDao().findOne((ID) requisicao.getId());
 
-			context.put("salvo", result);
-			return false;
+			contexto.put("salvo", result);
 		}
 
 	}
 
-	public static class _SalvarCmd<T extends EntidadeBase & _ChavePrimaria<ID>, ID extends Serializable> extends _BoModelo<T, ID> {
+	public static class _SalvarCmd<T extends EntidadeBase & _ChavePrimaria<ID>, ID extends Serializable>
+			extends _BoModelo<T, ID> {
 
 		public _SalvarCmd(JpaRepository<T, ID> dao) {
 			super(dao);
 		}
 
 		@Override
-		public boolean execute(Context context) throws Exception {
-			T requisicao = (T) context.get("requisicao");
+		public void procedimento(Contexto<?, ?> contexto) throws Exception {
+			T requisicao = (T) contexto.getRequisicao();
 			getDao().save(requisicao);
-			context.put("resposta", requisicao.getId());
-			return false;
+			contexto.setResposta(requisicao.getId());
 		}
 
 	}
@@ -143,16 +145,15 @@ public abstract class _BoModelo<T extends EntidadeBase, ID extends Serializable>
 
 		@SuppressWarnings("rawtypes")
 		@Override
-		public boolean execute(Context context) throws Exception {
-			ID[] requisicao = (ID[]) context.get("requisicao");
+		public void procedimento(Contexto<?, ?> contexto) throws Exception {
+			ID[] requisicao = (ID[]) contexto.getRequisicao();
 			Collection<T> result = new ArrayList<>();
 			for (ID id : requisicao) {
-				//T item = ((Optional<T>) getDao().findOne(id)).get();
+				// T item = ((Optional<T>) getDao().findOne(id)).get();
 				T item = (T) getDao().findOne(id);
 				result.add(item instanceof InfoBasica ? (T) get((InfoBasica) item) : item);
 			}
-			context.put("resposta", result);
-			return false;
+			contexto.setResposta(result);
 		}
 
 	}

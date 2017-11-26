@@ -2,9 +2,9 @@ package br.com.servico.negocio;
 
 import java.security.Principal;
 
-import org.apache.commons.chain.Command;
-import org.apache.commons.chain.Context;
-import org.apache.commons.chain.impl.ContextBase;
+import br.com.frazao.cadeiaresponsabilidade.Comando;
+import br.com.frazao.cadeiaresponsabilidade.Contexto;
+import br.com.frazao.cadeiaresponsabilidade.ContextoBase;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
@@ -17,22 +17,21 @@ public class FacadeBo implements BeanFactoryAware {
 
 	private BeanFactory beanFactory;
 
-	@SuppressWarnings("unchecked")
-	private Object executar(String comandoNome, Object requisicao, Principal usuario, Context context) throws Exception {
-		Command comando = (Command) this.beanFactory.getBean(comandoNome);
+	private Object executar(String comandoNome, Object requisicao, Principal usuario, Contexto<String, Object> contexto) throws Exception {
+		Comando comando = (Comando) this.beanFactory.getBean(comandoNome);
 		if (comando == null) {
 			throw new BoException("Comando não reconhecido pelo sistema [%s]", comandoNome);
 		}
-		if (context == null) {
-			context = new ContextBase();
+		if (contexto == null) {
+			contexto = new ContextoBase<>();
 		}
-		context.put("comando", comando.getClass().getName());
-		context.put("requisicao", requisicao);
-		context.put("usuario", usuario);
+		contexto.put("comando", comando.getClass().getName());
+		contexto.setRequisicao(requisicao);
+		contexto.put("usuario", usuario);
 		
-		comando.execute(context);
+		comando.executar(contexto);
 		
-		return context.get("resposta");
+		return contexto.getResposta();
 	}
 
 	@Transactional
@@ -46,8 +45,8 @@ public class FacadeBo implements BeanFactoryAware {
 	}
 
 	@Transactional
-	public Object executarComEscrita(String comando, Object requisicao, Principal usuario, Context context) throws Exception {
-		return executar(comando, requisicao, usuario, context);
+	public Object executarComEscrita(String comando, Object requisicao, Principal usuario, Contexto<String, Object> contexto) throws Exception {
+		return executar(comando, requisicao, usuario, contexto);
 	}
 
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -61,8 +60,8 @@ public class FacadeBo implements BeanFactoryAware {
 	}
 
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Object executarComEscritaENovaTransacao(String comando, Object requisicao, Principal usuario, Context context) throws Exception {
-		return executar(comando, requisicao, usuario, context);
+	public Object executarComEscritaENovaTransacao(String comando, Object requisicao, Principal usuario, Contexto<String, Object> contexto) throws Exception {
+		return executar(comando, requisicao, usuario, contexto);
 	}
 
 	@Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW)
@@ -76,8 +75,8 @@ public class FacadeBo implements BeanFactoryAware {
 	}
 
 	@Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW)
-	public Object executarSomenteLeitura(String comando, Object requisicao, Principal usuario, Context context) throws Exception {
-		return executar(comando, requisicao, usuario, context);
+	public Object executarSomenteLeitura(String comando, Object requisicao, Principal usuario, Contexto<String, Object> contexto) throws Exception {
+		return executar(comando, requisicao, usuario, contexto);
 	}
 
 	@Override

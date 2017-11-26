@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.apache.commons.chain.Command;
-import org.apache.commons.chain.Context;
+import br.com.frazao.cadeiaresponsabilidade.Comando;
+import br.com.frazao.cadeiaresponsabilidade.Contexto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ import br.com.servico.transporte.ple.cartao.EmissaoListaDto;
 
 @Service("PleCartaoEmissaoFiltrarCmd")
 @Scope("prototype")
-public class FiltrarCmd implements Command {
+public class FiltrarCmd extends Comando {
 
 	@Autowired
 	private EmissaoDaoCustom dao;
@@ -28,13 +28,13 @@ public class FiltrarCmd implements Command {
 	int contador;
 
 	@Override
-	@SuppressWarnings({ "unchecked" })
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Transactional(readOnly = true)
-	public boolean execute(Context context) throws Exception {
+	public void procedimento(Contexto context) throws Exception {
 		// retorno bruto, ou seja, retorno dos dados do banco de dados filtrado
 		// somente pelo perído informado
 		List<EmissaoListaDto> result = (List<EmissaoListaDto>) dao
-				.filtrar((EmissaoFiltroDto) context.get("requisicao"));
+				.filtrar((EmissaoFiltroDto) context.getRequisicao());
 
 		contador = 0;
 		if (result != null) {
@@ -89,8 +89,7 @@ public class FiltrarCmd implements Command {
 
 		UtilitarioExcel.criarArquivoExcelDoMapa(esbr, cabecalho, "c:\\temp\\resultado.xlsx");
 
-		context.put("resposta", null);
-		return false;
+		context.setResposta(null);
 	}
 
 }

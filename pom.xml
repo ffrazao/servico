@@ -90,11 +90,6 @@
 			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>commons-chain</groupId>
-			<artifactId>commons-chain</artifactId>
-			<version>1.2</version>
-		</dependency>
-		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
@@ -154,6 +149,19 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>frz.ferramenta</groupId>
+			<artifactId>ferramenta</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>br.com.frazao</groupId>
+			<artifactId>cadeiaresponsabilidade</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
